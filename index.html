@@ -43,6 +43,15 @@
 	const boca_chica_marker = L.marker([25.996145, -97.158367]).addTo(map)
 		.bindPopup('<b>Boca Chica Launch Tower</b><br />[25.996145, -97.158367]').openPopup();
 
+	function onMapClick(e) {
+		popup
+			.setLatLng(e.latlng)
+			.setContent(`You clicked the map at ${e.latlng.toString()}`)
+			.openOn(map);
+	}
+	map.on('click', onMapClick);
+	
+	
 	let longitude_offset = 228.18;
 	let inclination_degrees = 31;
 	let orbital_duration_minutes = 93.75;
