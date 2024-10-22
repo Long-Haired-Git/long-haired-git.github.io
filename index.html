@@ -43,6 +43,28 @@
 	const boca_chica_marker = L.marker([25.996145, -97.158367]).addTo(map)
 		.bindPopup('<b>Boca Chica Launch Tower</b><br />[25.996145, -97.158367]').openPopup();
 
+	function show_orbital_path() {
+		let longitude_offset = 228.18;
+		let inclination_degrees = 31;
+		let orbital_duration_minutes = 93.75;
+		
+		/* Smaller number makes the sin wave longer!! So we invert it! */
+		let percentage_of_a_day = orbital_duration_minutes / ( 24 * 60 );
+		let inverted_orbit_portion_of_day = 1 / (1 + percentage_of_a_day);
+		
+		const lat_longs_ary = []
+		//let inverted_orbit_portion_of_day = 0.9406968996;
+		
+		for (let longitude = -97.158367; longitude < (97.158367+360+360+166); longitude++) {
+			let working_longitude = longitude + longitude_offset;
+			let radians = ( working_longitude * Math.PI ) / 180;
+			let lattitude = inclination_degrees * Math.sin(inverted_orbit_portion_of_day * radians);
+			lat_longs_ary.push([lattitude, longitude])
+		}
+		
+		var polyline = L.polyline(lat_longs_ary, {color: 'red'}).addTo(map);		
+	}
+	
 	function onMapClick(e) {
 		popup
 			.setLatLng(e.latlng)
@@ -50,26 +72,7 @@
 			.openOn(map);
 	}
 	map.on('click', onMapClick);
-	
-	let longitude_offset = 228.18;
-	let inclination_degrees = 31;
-	let orbital_duration_minutes = 93.75;
-	
-	/* Smaller number makes the sin wave longer!! So we invert it! */
-	let percentage_of_a_day = orbital_duration_minutes / ( 24 * 60 );
-	let inverted_orbit_portion_of_day = 1 / (1 + percentage_of_a_day);
-	
-	const lat_longs_ary = []
-	//let inverted_orbit_portion_of_day = 0.9406968996;
-	
-	for (let longitude = -97.158367; longitude < (97.158367+360+360+166); longitude++) {
-		let working_longitude = longitude + longitude_offset;
-		let radians = ( working_longitude * Math.PI ) / 180;
-		let lattitude = inclination_degrees * Math.sin(inverted_orbit_portion_of_day * radians);
-		lat_longs_ary.push([lattitude, longitude])
-	}
-	
-	var polyline = L.polyline(lat_longs_ary, {color: 'red'}).addTo(map);
+
 </script>
 </body>
 </html>
