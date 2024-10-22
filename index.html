@@ -40,6 +40,14 @@
 		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 	}).addTo(map);
 
+	function onMapClick(e) {
+		popup
+			.setLatLng(e.latlng)
+			.setContent(`You clicked the map at ${e.latlng.toString()}`)
+			.openOn(map);
+	}
+	map.on('click', onMapClick);
+	
 	const boca_chica_marker = L.marker([25.996145, -97.158367]).addTo(map)
 		.bindPopup('<b>Boca Chica Launch Tower</b><br />[25.996145, -97.158367]').openPopup();
 
@@ -65,13 +73,7 @@
 		// var polyline = L.polyline(lat_longs_ary, {color: 'red'}).addTo(map);		
 	}
 	
-	function onMapClick(e) {
-		popup
-			.setLatLng(e.latlng)
-			.setContent(`You clicked the map at ${e.latlng.toString()}`)
-			.openOn(map);
-	}
-	map.on('click', onMapClick);
+
 
 </script>
 </body>
