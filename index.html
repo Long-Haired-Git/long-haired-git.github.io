@@ -63,7 +63,9 @@
 	
 	var polyline = L.polyline(lat_longs_ary, {color: 'red'}).addTo(map);
 
-	/*const circle = L.circle([51.508, -0.11], {
+	
+	/*
+ 	const circle = L.circle([51.508, -0.11], {
 		color: 'red',
 		fillColor: '#f03',
 		fillOpacity: 0.5,
@@ -81,7 +83,6 @@
 		.setContent('I am a standalone popup.')
 		.openOn(map);
 	*/
-	
 	function onMapClick(e) {
 		popup
 			.setLatLng(e.latlng)
