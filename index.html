@@ -47,6 +47,7 @@
 			.setLatLng(e.latlng)
 			.setContent(`You clicked the map at ${e.latlng.toString()}`)
 			.openOn(map);
+		show_orbital_path();
 	}
 	map.on('click', onMapClick);
 	
