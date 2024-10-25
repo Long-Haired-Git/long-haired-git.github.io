@@ -35,7 +35,7 @@
 		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 	}).addTo(map);
 
-	function show_orbital_path() {
+	
 		let longitude_offset = 228.18;
 		let inclination_degrees = 31;
 		let orbital_duration_minutes = 93.75;
@@ -55,7 +55,7 @@
 		}
 		
 		var polyline = L.polyline(lat_longs_ary, {color: 'red'}).addTo(map);		
-	}
+
 	
 	var popup = L.popup();
 	function onMapClick(e) {
@@ -63,7 +63,7 @@
 			.setLatLng(e.latlng)
 			.setContent(`You clicked the map at ${e.latlng.toString()}`)
 			.openOn(map);
-		show_orbital_path();
+
 	}
 	map.on('click', onMapClick);
 	
