@@ -45,7 +45,7 @@
 		let inverted_orbit_portion_of_day = 1 / (1 + percentage_of_a_day);
 		
 		const lat_longs_ary = []
-		//let inverted_orbit_portion_of_day = 0.9406968996;
+		let inverted_orbit_portion_of_day = 0.9406968996;
 		
 		for (let longitude = -97.158367; longitude < (97.158367+360+360+166); longitude++) {
 			let working_longitude = longitude + longitude_offset;
@@ -55,17 +55,6 @@
 		}
 		
 		var polyline = L.polyline(lat_longs_ary, {color: 'red'}).addTo(map);		
-
-	
-	var popup = L.popup();
-	function onMapClick(e) {
-		popup
-			.setLatLng(e.latlng)
-			.setContent(`You clicked the map at ${e.latlng.toString()}`)
-			.openOn(map);
-
-	}
-	map.on('click', onMapClick);
 	
 	const boca_chica_marker = L.marker([25.996145, -97.158367]).addTo(map)
 		.bindPopup('<b>Boca Chica Launch Tower</b><br />[25.996145, -97.158367]').openPopup();
